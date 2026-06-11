@@ -1,9 +1,11 @@
 unique_ids:
   assets:
+    bac-gen-logo.png: '178121457088658059751587.027145'
     standard-page.html: HBLBGHZSB5NHIOIG26WXPJHIJZD54DPC
     theme.css: IWUPMAPJVDTFX7VPWZVPSC52YLQKRDXN
   forms:
     Form1: 26FLU5KGSLEPQDPAR7ZKTDNSZ6UJL2HA
   modules: {}
   scripts: {}
-  server_modules: {}
+  server_modules:
+    accessory_tools: '1781214867956637039537822.4142'
