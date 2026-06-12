@@ -13,6 +13,7 @@ class Form1(Form1Template):
     #genomes_list = anvil.server.call('fetch_genome_data')
     #self.drop_down_1.items = [row['species'] for row in genomes_list]
 
+    anvil.server.call('load_local_table_from_CSV')
     genomes_list = app_tables.genome_sizes.search()
     self.drop_down_1.items = [row['species'] for row in genomes_list]
     

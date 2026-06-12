@@ -18,9 +18,17 @@ def fetch_genome_data()->list:
   genome_table = pd.read_csv(data_files['genome_sizes.csv'])
   return genome_table.to_dict('records')
 
-
 @anvil.server.callable
 def fetch_genome_size(species: str)->list:
   genome_table = pd.read_csv(data_files['genome_sizes.csv'], 
                              index_col=0)
   return genome_table.loc[species].to_dict()
+
+@anvil.server.callable
+def load_local_table_from_CSV():
+  genome_table = pd.read_csv(data_files['genome_sizes.csv'])
+  for idx, rec in genome_table.iterrows():
+    print(rec)
+    app_tables.genome_sizes.add_row(
+      species=rec['species'],
+      genome_size_mbp=rec['genome_size_mbp'])
