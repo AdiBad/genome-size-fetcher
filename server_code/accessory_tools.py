@@ -27,7 +27,13 @@ def fetch_genome_size(species: str)->list:
 @anvil.server.callable
 def load_local_table_from_CSV():
   genome_table = pd.read_csv(data_files['genome_sizes.csv'])
+  # avoid adding duplicates
+  existing_species = {
+    row['species']
+    for row in app_tables.genome_sizes.search()}
   for idx, rec in genome_table.iterrows():
-    app_tables.genome_sizes.add_row(
-      species=rec['species'],
-      genome_size_mbp=rec['genome_size_mbp'])
+      if rec['species'] not in existing_species:
+        app_tables.genome_sizes.add_row(
+          species=rec['species'],
+          genome_size_mbp=rec['genome_size_mbp'])
+        existing_species.add(rec['species'])
